@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+
+contact_links:
+    - name: GitHub Discussions
+      url: https://github.com/elsecx/gh-art/discussions
+      about: Ask questions, share ideas, or discuss patterns here instead of opening an issue.
+
+    - name: Documentation / README
+      url: https://github.com/elsecx/gh-art#readme
+      about: Check the documentation before reporting a bug or requesting a feature.
+
+    - name: Feature Ideas (Templates / Patterns)
+      url: https://github.com/elsecx/gh-art/discussions/categories/feature-ideas
+      about: Share new pattern templates or creative suggestions in the Feature Ideas category.

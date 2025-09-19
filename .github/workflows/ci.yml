@@ -1,0 +1,40 @@
+name: CI
+
+on:
+    push:
+        branches:
+            - main
+            - "feat/**"
+            - "fix/**"
+    pull_request:
+        branches:
+            - main
+
+jobs:
+    build-and-test:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 22
+                  cache: "pnpm"
+
+            - name: Install dependencies
+              run: pnpm install
+
+            - name: Run ESLint
+              run: pnpm lint
+
+            - name: TypeScript type check
+              run: pnpm tsc --noEmit
+
+            - name: Run tests
+              run: pnpm test
+
+            - name: Build project
+              run: pnpm build
