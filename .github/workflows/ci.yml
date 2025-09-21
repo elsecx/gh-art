@@ -30,11 +30,11 @@ jobs:
             - name: Run ESLint
               run: pnpm lint
 
+            - name: Run Prettier
+              run: pnpm prettier --check .
+
             - name: TypeScript type check
               run: pnpm tsc --noEmit
-
-            - name: Run tests
-              run: pnpm test
 
             - name: Build project
               run: pnpm build

@@ -2,7 +2,7 @@
 
 ![License](https://img.shields.io/github/license/elsecx/gh-art)
 ![Issues](https://img.shields.io/github/issues/elsecx/gh-art)
-![PRs](https://img.shields.io/badge/(Compiler)%20Typescript-passing-cyan?logo=github)
+![PRs](<https://img.shields.io/badge/(Compiler)%20Typescript-passing-cyan?logo=github>)
 ![PRs](https://img.shields.io/badge/PRs-Welcome-lightgreen)
 
 **GitHub-Art** is an **open-source web tool** that lets you create **custom art patterns** on your [GitHub Contribution Graph](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/viewing-contributions-on-your-profile) automatically.  
@@ -42,6 +42,7 @@ Design a pattern on an interactive editor, and the system will generate the requ
 ## 🛠️ Getting Started
 
 ### Prerequisites
+
 - [Node.js](https://nodejs.org/) v18 or higher
 - [pnpm](https://pnpm.io/) (recommended) / npm / yarn
 - GitHub OAuth App credentials (Client ID & Secret) → [Setup Guide](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app)
@@ -63,18 +64,22 @@ cp .env.example .env.local
 # 4. Start the development server
 pnpm dev
 ```
+
 Copy env example and fill required variables (see Environment Variable Required):
+
 ```bash
 cp .env.example .env.local
 # edit .env.local
 ```
 
 Run the dev server:
+
 ```bash
 pnpm dev
 ```
 
 Common scripts (defined in package.json):
+
 ```bash
 # development
 pnpm dev
@@ -94,6 +99,7 @@ pnpm format
 # run tests (if tests exist)
 pnpm test
 ```
+
 If you need to emulate Git operations (for commit generation) locally, consider using a test repository or feature flag to avoid affecting personal repositories.
 
 ---
@@ -148,8 +154,8 @@ Patterns are exported/imported using JSON. Consistent format helps sharing and p
 
 - year: target year (number)
 - grid: 7 × 52 array — 7 rows (days) × 52 columns (weeks)
-  - Row index 0 = Sunday, 1 = Monday, ... 6 = Saturday
-  - Column index 0 = first week column (left-most)
+    - Row index 0 = Sunday, 1 = Monday, ... 6 = Saturday
+    - Column index 0 = first week column (left-most)
 - intensity: optional per-cell integer (0 = no commits, higher number = more commits / stronger color)
 
 ### Example
@@ -194,13 +200,13 @@ We welcome contributions from everyone. To keep the project healthy and easy to 
 
 1. Fork the repository.
 2. Create a feature branch:
-   ```bash
-    git checkout -b feat/your-feature
-   ```
+    ```bash
+     git checkout -b feat/your-feature
+    ```
 3. Make changes, run linters and tests, and commit with a clear message:
-   ```bash
-   git commit -m "feat(editor): add undo/redo"
-   ```
+    ```bash
+    git commit -m "feat(editor): add undo/redo"
+    ```
 4. Push your branch and open a Pull Request (PR) against main.
 5. Describe your changes and link any related issues.
 
@@ -227,14 +233,14 @@ Suggested file to include in the repo `CONTRIBUTING.md` — contribution guideli
 
 ```json
 {
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint . --ext .ts,.tsx",
-    "format": "prettier --write .",
-    "test": "vitest"
-  }
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "eslint . --ext .ts,.tsx",
+        "format": "prettier --write .",
+        "test": "vitest"
+    }
 }
 ```
 
@@ -248,7 +254,7 @@ This project is released under the MIT License. See the included LICENSE file fo
 
 ## 💬 Support & Feedback
 
-- **Report bugs or request features**: open an issue on GitHub → [issues](https://github.com/<your-username>/gh-art/issues)  
-- **Discuss ideas and roadmap**: GitHub Discussions (if enabled) → [discussions](https://github.com/<your-username>/gh-art/discussions)  
+- **Report bugs or request features**: open an issue on GitHub → [issues](https://github.com/<your-username>/gh-art/issues)
+- **Discuss ideas and roadmap**: GitHub Discussions (if enabled) → [discussions](https://github.com/<your-username>/gh-art/discussions)
 
 If you find GitHub-Art helpful, please ⭐ star the repository — it helps others discover the project!
