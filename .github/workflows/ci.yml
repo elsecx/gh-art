@@ -1,69 +1,69 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - master
-      - "feat/**"
-      - "fix/**"
-  pull_request:
-    branches:
-      - master
+    push:
+        branches:
+            - master
+            - "feat/**"
+            - "fix/**"
+    pull_request:
+        branches:
+            - master
 
 jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
-    env:
-      NODE_ENV: production
+    build-and-test:
+        runs-on: ubuntu-latest
+        env:
+            NODE_ENV: production
 
-    steps:
-      # 1️⃣ Checkout repository
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+        steps:
+            # 1️⃣ Checkout repository
+            - name: Checkout repository
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
 
-      # 2️⃣ Setup Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 22
+            # 2️⃣ Setup Node.js
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 22
 
-      # 3️⃣ Enable pnpm via Corepack
-      - name: Enable pnpm
-        run: corepack enable
+            # 3️⃣ Enable pnpm via Corepack
+            - name: Enable pnpm
+              run: corepack enable
 
-      # 4️⃣ Cache pnpm + node_modules
-      - name: Setup pnpm cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.pnpm-store
-            node_modules
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
+            # 4️⃣ Cache pnpm + node_modules
+            - name: Setup pnpm cache
+              uses: actions/cache@v3
+              with:
+                  path: |
+                      ~/.pnpm-store
+                      node_modules
+                  key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+                  restore-keys: |
+                      ${{ runner.os }}-pnpm-
 
-      # 5️⃣ Install dependencies
-      - name: Install dependencies
-        run: pnpm install
+            # 5️⃣ Install dependencies
+            - name: Install dependencies
+              run: pnpm install
 
-      # 6️⃣ Run ESLint (fail if errors)
-      - name: Run ESLint
-        run: pnpm lint
+            # 6️⃣ Run ESLint (fail if errors)
+            - name: Run ESLint
+              run: pnpm lint
 
-      # 7️⃣ Run Prettier check (fail if formatting issues)
-      - name: Run Prettier
-        run: pnpm prettier --check .
+            # 7️⃣ Run Prettier check (fail if formatting issues)
+            - name: Run Prettier
+              run: pnpm prettier --check .
 
-      # 8️⃣ Optional: run Prettier write locally
-      # - name: Format code
-      #   run: pnpm prettier --write .
+            # 8️⃣ Optional: run Prettier write locally
+            # - name: Format code
+            #   run: pnpm prettier --write .
 
-      # 9️⃣ TypeScript type check
-      - name: TypeScript type check
-        run: pnpm tsc --noEmit
+            # 9️⃣ TypeScript type check
+            - name: TypeScript type check
+              run: pnpm tsc --noEmit
 
-      # 🔟 Build project
-      - name: Build project
-        run: pnpm build
+            # 🔟 Build project
+            - name: Build project
+              run: pnpm build
