@@ -1,40 +1,51 @@
 name: CI
 
 on:
-    push:
-        branches:
-            - main
-            - "feat/**"
-            - "fix/**"
-    pull_request:
-        branches:
-            - main
+  push:
+    branches:
+      - master
+      - "feat/**"
+      - "fix/**"
+  pull_request:
+    branches:
+      - master
 
 jobs:
-    build-and-test:
-        runs-on: ubuntu-latest
+  build-and-test:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v3
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 22
-                  cache: "pnpm"
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
 
-            - name: Install dependencies
-              run: pnpm install
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.pnpm-store
+            node_modules
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
 
-            - name: Run ESLint
-              run: pnpm lint
+      - name: Install dependencies
+        run: pnpm install
 
-            - name: Run Prettier
-              run: pnpm prettier --check .
+      - name: Run ESLint
+        run: pnpm lint
 
-            - name: TypeScript type check
-              run: pnpm tsc --noEmit
+      - name: Run Prettier
+        run: pnpm prettier --check .
 
-            - name: Build project
-              run: pnpm build
+      - name: TypeScript type check
+        run: pnpm tsc --noEmit
+
+      - name: Build project
+        run: pnpm build
